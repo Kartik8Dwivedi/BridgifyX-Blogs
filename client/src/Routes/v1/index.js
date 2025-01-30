@@ -3,6 +3,8 @@ import { loginUser, logoutUser, signupUser } from '../../Controllers/user.contro
 import { createNewToken } from '../../Controllers/jwt.controller.js';
 import { authenticateToken } from '../../Middlewares/jwt.middleware.js';
 import { createPost, deletePost, getAllPosts, getPost, updatePost } from '../../Controllers/post.controller.js';
+import upload from '../../Services/upload.js';
+import { getImage, uploadImage } from '../../Controllers/image.controller.js';
 
 const router = express.Router();
 
