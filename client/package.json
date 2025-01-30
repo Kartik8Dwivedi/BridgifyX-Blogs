@@ -1,0 +1,25 @@
+{
+  "name": "blog-app-server",
+  "version": "1.0.0",
+  "description": "This backend server for blog app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  },
+  "author": "Kartik Dwivedi",
+  "license": "ISC",
+  "dependencies": {
+    "bridgifyx": "file:",
+    "cors": "^2.8.5",
+    "email": "file:",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.2.0",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0"
+  }
+}
