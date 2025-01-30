@@ -2,7 +2,7 @@ import express from 'express';
 import { loginUser, logoutUser, signupUser } from '../../Controllers/user.controllers.js';
 import { createNewToken } from '../../Controllers/jwt.controller.js';
 import { authenticateToken } from '../../Middlewares/jwt.middleware.js';
-import { createPost, deletePost, updatePost } from '../../Controllers/post.controller.js';
+import { createPost, deletePost, getAllPosts, getPost, updatePost } from '../../Controllers/post.controller.js';
 
 const router = express.Router();
 
@@ -21,5 +21,8 @@ router.post("/token", createNewToken);
 router.post("/create", authenticateToken, createPost);
 router.put("/update/:id", authenticateToken, updatePost);
 router.delete("/delete/:id", authenticateToken, deletePost);
+
+router.get("/post/:id", authenticateToken, getPost);
+router.get("/posts", authenticateToken, getAllPosts);
 
 export default router;
