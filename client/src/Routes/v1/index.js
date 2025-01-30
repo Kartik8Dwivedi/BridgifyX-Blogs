@@ -1,6 +1,8 @@
 import express from 'express';
 import { loginUser, logoutUser, signupUser } from '../../Controllers/user.controllers.js';
 import { createNewToken } from '../../Controllers/jwt.controller.js';
+import { authenticateToken } from '../../Middlewares/jwt.middleware.js';
+import { createPost } from '../../Controllers/post.controller.js';
 
 const router = express.Router();
 
