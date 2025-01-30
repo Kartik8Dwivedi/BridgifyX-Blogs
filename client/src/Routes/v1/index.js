@@ -5,6 +5,7 @@ import { authenticateToken } from '../../Middlewares/jwt.middleware.js';
 import { createPost, deletePost, getAllPosts, getPost, updatePost } from '../../Controllers/post.controller.js';
 import upload from '../../Services/upload.js';
 import { getImage, uploadImage } from '../../Controllers/image.controller.js';
+import { deleteComment, getComments, newComment } from '../../Controllers/comment.controller.js';
 
 const router = express.Router();
 
@@ -29,6 +30,10 @@ router.get("/posts", authenticateToken, getAllPosts);
 
 router.post("/file/upload", upload.single("file"), uploadImage);
 router.get("/file/:filename", getImage);
+
+router.post("/comment/new", authenticateToken, newComment);
+router.get("/comments/:id", authenticateToken, getComments);
+router.delete("/comment/delete/:id", authenticateToken, deleteComment);
 
 
 export default router;
