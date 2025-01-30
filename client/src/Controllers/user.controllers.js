@@ -1,12 +1,18 @@
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+import Token from "../Models/token.js"
+import User from "../Models/user.js";
+
 export const loginUser = async (request, response) => {
-    
-  let user = await User.findOne({ username: request.body.username });
+    let { username, password } = request.body;
+  let user = await User.findOne({ username });
   if (!user) {
-    return response.status(400).json({ msg: "Username does not match" });
+    return response.status(400).json({ message: "Username does not match" });
   }
 
   try {
-    let match = await bcrypt.compare(request.body.password, user.password);
+    let match = await bcrypt.compare(password, user.password);
     if (match) {
       const accessToken = jwt.sign(
         user.toJSON(),
@@ -30,9 +36,9 @@ export const loginUser = async (request, response) => {
           username: user.username,
         });
     } else {
-      response.status(400).json({ msg: "Password does not match" });
+      response.status(400).json({ message: "Password does not match" });
     }
   } catch (error) {
-    response.status(500).json({ msg: "error while login the user" });
+    response.status(500).json({ message: "error while login the user" });
   }
 };
