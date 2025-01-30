@@ -42,3 +42,36 @@ export const loginUser = async (request, response) => {
     response.status(500).json({ message: "error while login the user" });
   }
 };
+
+export const signupUser = async (request, response) => {
+  try {
+    const userFound = await User.findOne({ username: request.body.username });
+    if (userFound) {
+      return response.status(400).json({ message: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(request.body.password, 10);
+
+    const user = {
+      username: request.body.username,
+      name: request.body.name,
+      password: hashedPassword,
+    };
+
+    const newUser = new User(user);
+    await newUser.save();
+
+    return response.status(200).json({ message: "Signup successfull" });
+  } catch (error) {
+    return response
+      .status(500)
+      .json({ message: "Error while signing up user" });
+  }
+};
+
+export const logoutUser = async (request, response) => {
+  const token = request.body.token;
+  await Token.deleteOne({ token: token });
+
+  response.status(204).json({ msg: "logout successfull" });
+};
