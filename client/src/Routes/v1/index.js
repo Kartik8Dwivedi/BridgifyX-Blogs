@@ -16,4 +16,8 @@ router.post("/logout", logoutUser);
 
 router.post("/token", createNewToken);
 
+router.post("/create", authenticateToken, createPost);
+router.put("/update/:id", authenticateToken, updatePost);
+router.delete("/delete/:id", authenticateToken, deletePost);
+
 export default router;
