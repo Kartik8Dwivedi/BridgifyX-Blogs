@@ -1,4 +1,5 @@
 import express from 'express';
+import { loginUser } from '../../Controllers/user.controllers.js';
 
 const router = express.Router();
 
@@ -8,6 +9,6 @@ router.get('/', (req, res) => {
     })
 });
 
-
+router.post("/login", loginUser);
 
 export default router;
